@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trader</title>
+</head>
+<body>
+    <h1>AI Trading Backtest</h1>
+    <h2>Final Portfolio Value: ${{final_value}}</h2>
+
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Decision</th>
+            <th>Portfolio Value</th>
+        </tr>
+        {% for row in rows %}
+        <tr>
+            <td>{{ row.date }}</td>
+            <td>{{ row.decision }}</td>
+            <td>{{ row.portfolio_value }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
