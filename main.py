@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
+from strategies.sma import SMACrossoverStrategy
 import pandas as pd
 
 from data.data_loader import get_price_history
@@ -12,7 +13,8 @@ templates = Jinja2Templates(directory = "dashboard/templates")
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
     data = get_price_history("AAPL", "2022-01-01", "2023-01-01")
-    results = run_backtest(data)
+    strategy = SMACrossoverStrategy(short_window=20, long_window=50)
+    results = run_backtest(data, strategy)
 
     final_value = results.iloc[-1]["portfolio_value"]
 
