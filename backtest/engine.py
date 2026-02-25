@@ -11,7 +11,7 @@ def run_backtest(data: pd.DataFrame, strategy):
         window = data.iloc[:i+1]
         price = data.iloc[i]["Close"]
 
-        signal = strategy.iloc[i]["Close"]
+        signal = strategy.generate_signal(window)
 
         if signal == "BUY" and cash > price:
             shares_to_buy = int(cash // price)
